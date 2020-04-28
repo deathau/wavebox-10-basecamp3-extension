@@ -23,7 +23,10 @@ const main = async function () {
                 if (event.origin == "https://3.basecamp.com") {
                     // update the unreads badge
                     if (event.data.type == 'basecamp3_unreads') {
-                        window.wavebox.setBadgeCount(event.data.count)
+                        window.wavebox.setBadgeCount(event.data.count);
+                        // send the data to the background page
+                        // to update the badge icon
+                        chrome.runtime.sendMessage(event.data);
                     }
                     // update the messages (dashboard / wavebox mini)
                     if (event.data.type == 'basecamp3_messages') {
